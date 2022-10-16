@@ -1,32 +1,10 @@
 //data
-const products = [
-    {
-        id : 1,
-        name : "apple",
-        price : 500
-    },
-    {
-        id : 2,
-        name : "orange",
-        price : 600
-    },
-    {
-        id : 3,
-        name : "banana",
-        price : 200
-    },
-    {
-        id : 4,
-        name : "mango",
-        price : 900
-    },
-    {
-        id : 5,
-        name : "pineapple",
-        price : 1500
-    }
+let products = [];
+if(localStorage.getItem('products')){
+    products = JSON.parse(localStorage.getItem('products'))
+}
 
-];
+// console.log(products);
 
 //selectors
 const invoiceNumber = document.querySelector("#invoiceNumber");
@@ -36,6 +14,10 @@ const quantity = document.querySelector("#quantity");
 const newListFrom = document.querySelector("#newListFrom");
 const rows = document.querySelector("#rows");
 const costTotal = document.querySelector("#costTotal");
+const addProduct = document.querySelector("#addProduct");
+const addProductModal = new bootstrap.Modal("#newProductModal");
+const newProductForm = document.querySelector("#newProductForm");
+
 
 //generate invoice number
 const getRandomId = (min = 100000, max = 999999) => {
@@ -57,6 +39,29 @@ function calculateCostTotal(){
     window.speechSynthesis.speak(msg);
 }
 
+
+newProductForm.addEventListener('submit',function (e){
+    e.preventDefault()
+    let formData = new FormData(this);
+    products.push({
+        id : Number(formData.get('id')),
+        name : formData.get('name'),
+        price : formData.get('price')
+    })
+
+    localStorage.setItem('products',JSON.stringify(products));
+
+    selectProduct.append(new Option(formData.get('name'),formData.get('id')))
+
+    this.reset()
+
+    addProductModal.toggle()
+});
+
+addProduct.addEventListener('click',function (){
+    addProductModal.toggle();
+})
+
 products.forEach(product => selectProduct.append(new Option(product.name,product.id)) )
 invoiceNumber.value = getRandomId()
 invoiceDate.valueAsDate = new Date()
@@ -65,6 +70,9 @@ newListFrom.addEventListener('submit',e => {
     e.preventDefault()
 
     const formData = new FormData(newListFrom);
+
+    console.log(formData.get("product"))
+
 
     let currentProduct = products.find(product => product.id === parseInt(formData.get("product")));
 

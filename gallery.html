@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Invoice Maker</title>
+    <link rel="stylesheet" href="node_modules/animate.css/animate.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <style>
+        .uploaded{
+            columns : 3 200px;
+            column-gap: 1.5rem;
+        }
+
+        #uploaderUI{
+            transition: 0.5s;
+        }
+        #uploaderUI:active{
+            background-color: #828282 !important;
+            transform: scale(1.05);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-4">
+                    <div class="p-5 border rounded bg-light mt-5 text-center" id="uploaderUI">
+                        <i class="bi bi-upload display-6"></i>
+                    </div>
+                    <input type="file" id="uploader" class="d-none" multiple>
+                </div>
+                <div class="uploaded g-5"></div>
+            </div>
+        </div>
+    </div>
+
+
+<script src="js/gallery.js"></script>
+</body>
+</html>

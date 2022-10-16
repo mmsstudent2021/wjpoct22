@@ -38,11 +38,16 @@
                     <div class="row align-items-end">
                         <div class="col">
                             <label class="form-label" for="">Select Product</label>
-                            <select class="form-select" name="product" id="selectProduct"></select>
+                            <div class="input-group">
+                                <select class="form-select" name="product" id="selectProduct"></select>
+                                <button type="button" class="btn btn-outline-secondary" id="addProduct">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
                         </div>
                         <div class="col">
                             <label class="form-label" for="">Quantity</label>
-                            <input type="number" class="form-control text-end" name="quantity" id="quantity">
+                            <input type="number" class="form-control text-end" name="quantity" id="quantity" required>
                         </div>
                         <div class="col">
                             <button class="btn btn-lg btn-primary w-100">Add</button>
@@ -74,6 +79,42 @@
             </table>
 
             <button class="btn btn-primary" onclick="print()">Print</button>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="newProductModal" tabindex="-1" aria-labelledby="newProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="newProductModalLabel">Add New Product</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="newProductForm" action="">
+                    <div class="mb-3">
+                        <label class="form-label">Product ID</label>
+                        <input type="number" name="id" value="8" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Product Name</label>
+                        <input type="text" name="name" value="iPhone 14 Pro" class="form-control">
+                    </div>
+
+                </form>
+
+                <div class="mb-3">
+                    <label class="form-label">Product Price</label>
+                    <input type="number" form="newProductForm" name="price" value="123" class="form-control">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button form="newProductForm" class="btn btn-primary">Save changes</button>
+            </div>
         </div>
     </div>
 </div>
