@@ -11,17 +11,21 @@
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <style>
         .key{
-            height: 300px;
+            height: 200px;
+            transition: 0.2s;
         }
-        .key:active{
+        .key:active,.key.active{
             opacity: 0.9;
+        }
+        .loader>div{
+            background-color: rgba(255, 255, 255, 0.5);
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="row mt-5" id="keyboard"></div>
+    <div class="row g-1 mt-5" id="keyboard"></div>
 </div>
 
 
